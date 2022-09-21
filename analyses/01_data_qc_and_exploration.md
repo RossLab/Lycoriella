@@ -65,26 +65,3 @@ The K-mer spectrum now looks a lot more normal. There is a large haploid peak - 
 
 ![](../figures/lycoriella_male_gscope_kmer_spectra_subset.png)
 
-## Mapping against Bradysia coprophila
-
-The only reference genome we have for a fungus gnat that is chromosome-level (or anywhere near) is Bradysia coprophila, our main study organism. We can map reads from this Lycoriella species against the reference, which may tell us a few things:
-- Roughly how closely related the two species are
-- How useful this species would be to use as an outgroup for population genetics
-- Looking at read coverage after mapping may indicate if there have been any significant chromosomal rearrangements or sex chromosome turnover
-
-We will use Bowtie2 (https://github.com/BenLangmead/bowtie2) to map, which has a sensitive option that works well for interspecific alignments, and it's also particularly good for large genomes (not that fungus gnats have large genomes, but they're much larger than e.g. bacteria)
-
-```
-echo "building bowtie index"
-bowtie2-build Bcop_v2-chromosomes.fasta Bcop_v2-chromosomes.idx
-
-echo "starting alignment"
-bowtie2 --very-sensitive-local --threads 20 \
-	-x Bcop_v2-chromosomes.idx \
-	-1 BCM_EDSW220012746-1a_HL5LLDSX3_L4_1.trimmed.fq.gz \
-	-2 BCM_EDSW220012746-1a_HL5LLDSX3_L4_2.trimmed.fq.gz \
-	| samtools view -bS - > Lyco_vs_bcopv2.bam && samtools sort Lyco_vs_bcopv2.bam \
-	> Lyco_vs_bcopv2.sorted.bam
-```
-
-
