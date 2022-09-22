@@ -79,5 +79,5 @@ Now the K-mer spectrum looks more normal. It's likely the small bump (in between
 
 ![](../figures/lyco_kmer_spectrum_prior_est_200.png)
 
-If the genome size is indeed ~200Mb, we can also update the coverage estimate: (358614188*2*150)/200000000 = 538x (so even higher)
+If the genome size is indeed ~200Mb, we can also update the coverage estimate: (358614188*2*150)/200000000 = 538x (so even higher). At such high coverage it doesn't seem unreasonable that some GRC DNA has been sequenced...
 
