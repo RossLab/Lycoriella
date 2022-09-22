@@ -15,7 +15,7 @@ zcat BCM_EDSW220012746-1a_HL5LLDSX3_L4_1.fq.gz | seqtk sample -s100 BCM_EDSW2200
 zcat BCM_EDSW220012746-1a_HL5LLDSX3_L4_2.fq.gz | seqtk sample -s100 BCM_EDSW220012746-1a_HL5LLDSX3_L4_2.fq.gz 0.25 | gzip > BCM_subset_0.25_2.fq.gz
 rm BCM_EDSW220012746*
 
-spades.py -t 30 --isolate -1 BCM_subset_0.25_1.fq.gz -2 BCM_subset_0.25_2.fq.gz -o lycoriella_spades/
+spades.py -t 16 --isolate -1 BCM_subset_0.25_1.fq.gz -2 BCM_subset_0.25_2.fq.gz -o lycoriella_spades/
 
 # sync files back
 rsync -av lycoriella_spades /data/ross/flies/analyses/Lycoriella/results/genome_assembly
