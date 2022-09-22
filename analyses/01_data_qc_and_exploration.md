@@ -65,3 +65,12 @@ The K-mer spectrum now looks a lot more normal. There is a large haploid peak - 
 
 ![](../figures/lycoriella_male_gscope_kmer_spectra_subset.png)
 
+Another option (courtesy of Kamil) is to provide a prior coverage estimate, since there may be odd features of the Kmer histogram that are confusing the model and resulting in failure to converge. This can be done on the online server or on the command line, e.g. setting a prior coverage estimate of 200:
+
+```
+genomescope.R -i BCM_EDSW220012746-1a_HL5LLDSX3_L4_kmer_k21.hist -o . -n BCM_EDSW220012746 -l 200
+```
+
+Now the K-mer spectrum looks more normal. It's likely the small bump (in between the errors and the haploid peak) caused the problem. Whatever this is, it's at a lower frequency than the core genome... as such it's unlike an endosymbiont, but could be some kind of gut microbe or just bacterial contamination. Or it could be GRCs, but this seems unlikely since the germline/sperm will make up such a small proportion of the DNA (unless there's really high copy number?). I wonder if it's worth pulling out those K-mers, assembling them and figuring out which kingdom they come from...
+
+![](../figures/lyco_kmer_spectrum_prior_est_200.png)
