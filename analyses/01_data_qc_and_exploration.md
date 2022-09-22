@@ -21,6 +21,10 @@ Looks like there is some minor contamination - something with 63% GC - likely ju
 
 ![](../figures/lyco_male_reads_GC_content.png)
 
+We can also get an estimate of genome coverage from the raw data. Genome coverage is calculated as (read length * no. reads) / genome size
+
+For this dataset, the FastQC report tells us the number of reads in each file is 358614188. We will use the size of the Bradysia coprophila genome as a proxy for genome size. So coverage = (358614188*2*150)/300000000 = 358x (that's high!).
+
 ## Data exploration
 
 To explore the data I will look at the kmer spectrum by running KMC https://github.com/refresh-bio/KMC and plotting with GenomeScope2. GenomeScope2 estimates genome size, heterozygosity rate and repeat content from unprocessed short reads http://qb.cshl.edu/genomescope/genomescope2.0/
@@ -74,3 +78,6 @@ genomescope.R -i BCM_EDSW220012746-1a_HL5LLDSX3_L4_kmer_k21.hist -o . -n BCM_EDS
 Now the K-mer spectrum looks more normal. It's likely the small bump (in between the errors and the haploid peak) caused the problem. Whatever this is, it's at a lower frequency than the core genome... as such it's unlike an endosymbiont, but could be some kind of gut microbe or just bacterial contamination. Or it could be GRCs, but this seems unlikely since the germline/sperm will make up such a small proportion of the DNA (unless there's really high copy number?). I wonder if it's worth pulling out those K-mers, assembling them and figuring out which kingdom they come from...
 
 ![](../figures/lyco_kmer_spectrum_prior_est_200.png)
+
+If the genome size is indeed ~200Mb, we can also update the coverage estimate: (358614188*2*150)/200000000 = 538x (so even higher)
+
